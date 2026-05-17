@@ -24,7 +24,7 @@ def train_and_save():
         with zipfile.ZipFile("battery.zip", 'r') as z:
             z.extractall(".")
         
-        # İç zip'i aç
+       
         inner_zip = "5. Battery Data Set/1. BatteryAgingARC-FY08Q4.zip"
         with zipfile.ZipFile(inner_zip, 'r') as z:
             z.extractall(".")
