@@ -22,6 +22,15 @@ Bu proje, NASA Prognostics Center of Excellence'ın Li-ion batarya veri setini k
 
 amaçlamaktadır.
 
+## 📸 Ekran Görüntüleri
+
+**Normal Durum (İyi):**
+![İyi Durum](images/iyi_durum.jpeg)
+
+**Kritik Durum (EOL Aşıldı):**
+![Kritik Durum](images/kritik_durum.jpeg)
+
+
 ## 🎯 Sonuçlar
 
 | Metrik | Değer |
