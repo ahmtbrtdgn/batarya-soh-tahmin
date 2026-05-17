@@ -1,0 +1,7 @@
+*.keras
+*.pkl
+*.mat
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
+5. Battery Data Set/
