@@ -22,16 +22,18 @@ def train_and_save():
     if not os.path.exists('B0005.mat'):
         print("Zip açılıyor...")
         with zipfile.ZipFile("battery.zip", 'r') as z:
-            # Zip içeriğini listele
-            all_files = z.namelist()
-            print("Zip içindekiler:", all_files[:20])
             z.extractall(".")
         
-        # Tüm dosyaları listele
+        # İç zip'i aç
+        inner_zip = "5. Battery Data Set/1. BatteryAgingARC-FY08Q4.zip"
+        with zipfile.ZipFile(inner_zip, 'r') as z:
+            z.extractall(".")
+        
+        # Mat dosyalarını kopyala
         import shutil
-        for root, dirs, files in os.walk("."):
-            for f in files:
-                if f.endswith('.mat'):
+        for root, dirs, files_list in os.walk("."):
+            for f in files_list:
+                if f.endswith('.mat') and f in ['B0005.mat', 'B0006.mat', 'B0007.mat', 'B0018.mat']:
                     full_path = os.path.join(root, f)
                     print(f"MAT bulundu: {full_path}")
                     shutil.copy(full_path, f)
