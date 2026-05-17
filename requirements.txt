@@ -3,4 +3,3 @@ gradio
 scikit-learn
 numpy==1.26.4
 scipy
-pillow==10.2.0
