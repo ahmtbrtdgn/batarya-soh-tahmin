@@ -1,5 +1,6 @@
-tensorflow
+tensorflow==2.15.0
 gradio
 scikit-learn
-numpy
+numpy==1.26.4
 scipy
+pillow==10.2.0
