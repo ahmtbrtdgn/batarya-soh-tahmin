@@ -29,14 +29,15 @@ def train_and_save():
         with zipfile.ZipFile(inner_zip, 'r') as z:
             z.extractall(".")
         
-        # Mat dosyalarını kopyala
         import shutil
         for root, dirs, files_list in os.walk("."):
             for f in files_list:
                 if f.endswith('.mat') and f in ['B0005.mat', 'B0006.mat', 'B0007.mat', 'B0018.mat']:
                     full_path = os.path.join(root, f)
-                    print(f"MAT bulundu: {full_path}")
-                    shutil.copy(full_path, f)
+                    dest = os.path.join("/app", f)
+                    if os.path.abspath(full_path) != os.path.abspath(dest):
+                        shutil.copy(full_path, dest)
+                    print(f"MAT hazır: {f}")
 
     def get_soh(mat_file, key):
         mat = scipy.io.loadmat(mat_file)
