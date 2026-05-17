@@ -1,3 +1,14 @@
+---
+title: Batarya SOH Tahmin Sistemi
+emoji: 🔋
+colorFrom: blue
+colorTo: green
+sdk: gradio
+sdk_version: "4.0.0"
+app_file: app.py
+pinned: false
+---
+<<<<<<< HEAD
 # 🔋 Batarya SOH Tahmin Sistemi
 
 NASA Li-ion batarya verisi üzerinde LSTM derin öğrenme modeli ile batarya sağlık durumu (SOH) ve kalan kullanılabilir ömür (RUL) tahmini yapan sistem.
@@ -83,3 +94,20 @@ POST /predict
 - ⬜ STM32F4 donanım entegrasyonu
 - ⬜ Gerçek zamanlı ölçüm
 - ⬜ Mobil uygulama
+=======
+---
+title: Batarya Soh Tahmin
+emoji: 🏃
+colorFrom: red
+colorTo: purple
+sdk: gradio
+sdk_version: 6.14.0
+python_version: '3.13'
+app_file: app.py
+pinned: false
+license: mit
+short_description: NASA Li-ion batarya verisi üzerinde LSTM ile SOH ve RUL tahm
+---
+
+Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
+>>>>>>> 4bff99656a1cc7c27937a2a5f9df1857fdf3a4fa
