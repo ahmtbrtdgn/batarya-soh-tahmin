@@ -83,7 +83,3 @@ POST /predict
 - [ ] STM32F4 donanım entegrasyonu
 - [ ] Gerçek zamanlı ölçüm
 - [ ] Mobil uygulama
-
-## 👨‍💻 Geliştirici
-
-EEE 3. sınıf öğrencisi tarafından geliştirilmiştir.
