@@ -9,19 +9,26 @@ import scipy.io
 import urllib.request
 import zipfile
 import os
+import glob
 
 def train_and_save():
-    # Dataset indir
-    if not os.path.exists('B0005.mat'):
+    if not os.path.exists('battery.zip'):
         print("Dataset indiriliyor...")
         urllib.request.urlretrieve(
             "https://phm-datasets.s3.amazonaws.com/NASA/5.+Battery+Data+Set.zip",
             "battery.zip"
         )
+    
+    if not os.path.exists('B0005.mat'):
+        print("Zip açılıyor...")
         with zipfile.ZipFile("battery.zip", 'r') as z:
             z.extractall(".")
+        # Mat dosyalarını bul ve kopyala
+        for mat_file in glob.glob("**/*.mat", recursive=True):
+            basename = os.path.basename(mat_file)
+            if not os.path.exists(basename):
+                os.rename(mat_file, basename)
 
-    # Veriyi yükle
     def get_soh(mat_file, key):
         mat = scipy.io.loadmat(mat_file)
         cycles = mat[key][0][0]['cycle'][0]
@@ -36,12 +43,11 @@ def train_and_save():
         capacities = np.array(capacities)
         return (capacities / capacities[0]) * 100
 
-    # Tüm bataryalar
     files = {
-        'B0005': '1. BatteryAgingARC-FY08Q4/B0005.mat',
-        'B0006': '1. BatteryAgingARC-FY08Q4/B0006.mat',
-        'B0007': '1. BatteryAgingARC-FY08Q4/B0007.mat',
-        'B0018': '1. BatteryAgingARC-FY08Q4/B0018.mat',
+        'B0005': 'B0005.mat',
+        'B0006': 'B0006.mat',
+        'B0007': 'B0007.mat',
+        'B0018': 'B0018.mat',
     }
     
     all_soh = np.concatenate([get_soh(v, k) for k, v in files.items()])
@@ -74,7 +80,6 @@ def train_and_save():
     
     return model, scaler
 
-# Model yükle veya eğit
 if os.path.exists('batarya_soh_model.keras'):
     model = tf.keras.models.load_model('batarya_soh_model.keras')
     with open('scaler.pkl', 'rb') as f:
