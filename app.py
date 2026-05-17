@@ -22,18 +22,19 @@ def train_and_save():
     if not os.path.exists('B0005.mat'):
         print("Zip açılıyor...")
         with zipfile.ZipFile("battery.zip", 'r') as z:
+            # Zip içeriğini listele
+            all_files = z.namelist()
+            print("Zip içindekiler:", all_files[:20])
             z.extractall(".")
         
-        # Tüm .mat dosyalarını listele
-        mat_files = glob.glob("**/*.mat", recursive=True)
-        print("Bulunan mat dosyaları:", mat_files)
-        
-        # Kopyala
+        # Tüm dosyaları listele
         import shutil
-        for mat_file in mat_files:
-            basename = os.path.basename(mat_file)
-            print(f"Kopyalanıyor: {mat_file} -> {basename}")
-            shutil.copy(mat_file, basename)
+        for root, dirs, files in os.walk("."):
+            for f in files:
+                if f.endswith('.mat'):
+                    full_path = os.path.join(root, f)
+                    print(f"MAT bulundu: {full_path}")
+                    shutil.copy(full_path, f)
 
     def get_soh(mat_file, key):
         mat = scipy.io.loadmat(mat_file)
