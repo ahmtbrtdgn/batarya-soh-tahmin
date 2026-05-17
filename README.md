@@ -76,10 +76,10 @@ POST /predict
 
 ## 🗺️ Yol Haritası
 
-- [x] NASA veri seti analizi
-- [x] LSTM modeli eğitimi
-- [x] FastAPI backend
-- [x] Web arayüzü
-- [ ] STM32F4 donanım entegrasyonu
-- [ ] Gerçek zamanlı ölçüm
-- [ ] Mobil uygulama
+- ✅ NASA veri seti analizi
+- ✅ LSTM modeli eğitimi
+- ✅ FastAPI backend
+- ✅ Web arayüzü
+- ⬜ STM32F4 donanım entegrasyonu
+- ⬜ Gerçek zamanlı ölçüm
+- ⬜ Mobil uygulama
