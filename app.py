@@ -3,7 +3,7 @@ import numpy as np
 import pickle
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import LSTM, Dense, Dropout
+from tensorflow.keras.layers import LSTM, Dense, Dropout, Input
 from sklearn.preprocessing import MinMaxScaler
 import scipy.io
 import urllib.request
@@ -24,7 +24,6 @@ def train_and_save():
         with zipfile.ZipFile("battery.zip", 'r') as z:
             z.extractall(".")
         
-       
         inner_zip = "5. Battery Data Set/1. BatteryAgingARC-FY08Q4.zip"
         with zipfile.ZipFile(inner_zip, 'r') as z:
             z.extractall(".")
@@ -74,7 +73,8 @@ def train_and_save():
     X = X.reshape(-1, SEQ_LENGTH, 1)
 
     model = Sequential([
-        LSTM(64, return_sequences=True, input_shape=(SEQ_LENGTH, 1)),
+        Input(shape=(SEQ_LENGTH, 1)),
+        LSTM(64, return_sequences=True),
         Dropout(0.2),
         LSTM(32),
         Dropout(0.2),
