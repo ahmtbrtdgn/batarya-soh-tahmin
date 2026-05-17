@@ -23,11 +23,17 @@ def train_and_save():
         print("Zip açılıyor...")
         with zipfile.ZipFile("battery.zip", 'r') as z:
             z.extractall(".")
-        # Mat dosyalarını bul ve kopyala
-        for mat_file in glob.glob("**/*.mat", recursive=True):
+        
+        # Tüm .mat dosyalarını listele
+        mat_files = glob.glob("**/*.mat", recursive=True)
+        print("Bulunan mat dosyaları:", mat_files)
+        
+        # Kopyala
+        import shutil
+        for mat_file in mat_files:
             basename = os.path.basename(mat_file)
-            if not os.path.exists(basename):
-                os.rename(mat_file, basename)
+            print(f"Kopyalanıyor: {mat_file} -> {basename}")
+            shutil.copy(mat_file, basename)
 
     def get_soh(mat_file, key):
         mat = scipy.io.loadmat(mat_file)
